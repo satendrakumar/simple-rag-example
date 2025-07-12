@@ -1,0 +1,15 @@
+[project]
+name = "simple-rag-example"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "accelerate>=1.8.1",
+    "faiss-cpu>=1.11.0",
+    "fastapi[standard]>=0.116.1",
+    "langchain>=0.3.26",
+    "langchain-community>=0.3.27",
+    "pypdf>=5.7.0",
+    "sentence-transformers>=5.0.0",
+]
