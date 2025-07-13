@@ -1,6 +1,10 @@
-def main():
-    print("Hello from simple-rag-example!")
+import uvicorn
+from fastapi import FastAPI
 
+from src.api.rag_router import router
 
-if __name__ == "__main__":
-    main()
+app = FastAPI()
+
+app.include_router(router, prefix="/v1/api")
+
+uvicorn.run(app, host="0.0.0.0", port=8000)
