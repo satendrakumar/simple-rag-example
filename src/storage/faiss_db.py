@@ -12,12 +12,12 @@ class FaissDB:
         documents: list[Document] = pdf_loader.load_and_split(text_splitter)
         self.__db = FAISS.from_documents(documents=documents, embedding=embeddings)
 
-    def query(self, question: str, k: int = 5, similarity_score_threshold: float = 0.5) -> str:
+    def query(self, question: str, k: int = 5, score_threshold: float = 0.8) -> str:
         relevant_docs_with_scores = self.__db.similarity_search_with_score(question, k=k)
         context = ""
         relevant_count = 0
         for doc, score in relevant_docs_with_scores:
-            if score >= similarity_score_threshold:  # Only include high-relevance documents
+            if score <= score_threshold:
                 relevant_count += 1
                 context += f"Relevant Extract {relevant_count} (Relevance: {score:.3f}):\n{doc.page_content}\n\n"
         if relevant_count == 0:
