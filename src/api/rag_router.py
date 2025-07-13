@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from starlette import status
 
-from src.rag import rag_service
+from src.rag.rag_service import RAGService
 
 router = APIRouter(tags=["RAG"])
 
@@ -10,6 +10,8 @@ router = APIRouter(tags=["RAG"])
 class RagQuestion(BaseModel):
     question: str
 
+
+rag_service = RAGService()
 
 @router.post("/rag",
              summary="rag api",
