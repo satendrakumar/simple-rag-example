@@ -7,9 +7,9 @@ from transformers import AutoTokenizer
 
 
 class Chunker:
-    def __init__(self, embed_model_id: str = "BAAI/bge-m3", max_tokens: int = 1024):
+    def __init__(self, embedding_model: str, max_tokens: int = 1024):
         tokenizer = HuggingFaceTokenizer(
-            tokenizer=AutoTokenizer.from_pretrained(embed_model_id),
+            tokenizer=AutoTokenizer.from_pretrained(embedding_model),
             max_tokens=max_tokens,
         )
         self.__chunker = chunking.HybridChunker(tokenizer=tokenizer, merge_peers=True)

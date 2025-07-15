@@ -9,7 +9,12 @@ router = APIRouter(tags=["RAG"])
 
 class RagQuestion(BaseModel):
     question: str
+    enable_thinking: bool = True
 
+
+class RagResponse(BaseModel):
+    response: str
+    thinking: str
 
 rag_service = RAGService()
 
@@ -19,5 +24,5 @@ rag_service = RAGService()
              status_code=status.HTTP_200_OK,
              )
 async def rag(req: RagQuestion):
-    response = rag_service.run(req.question)
-    return {"response": response}
+    response = rag_service.run(req.question, req.enable_thinking)
+    return RagResponse(response=response["response"], thinking=response["thinking"] )
