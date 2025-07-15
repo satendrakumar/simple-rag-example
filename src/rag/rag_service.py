@@ -8,12 +8,14 @@ from src.storage.lancedb import LanceDB
 
 pdf_data = "data/IPCC_AR6_SYR_LongerReport.pdf"
 
+EMBEDDING_MODEL = "BAAI/bge-m3"
+LLM_MODEL = "Qwen/Qwen3-1.7B"
 
 class RAGService:
     def __init__(self):
-        self.embeddings = CustomEmbeddings(model_name="BAAI/bge-m3")
-        self.llm = QwenLLM(model_id="Qwen/Qwen1.5-1.8B")
-        self.chunker = Chunker()
+        self.embeddings = CustomEmbeddings(model_name=EMBEDDING_MODEL)
+        self.llm = QwenLLM(model_name=LLM_MODEL)
+        self.chunker = Chunker(embedding_model=EMBEDDING_MODEL)
         self.lancedb = LanceDB()
         count = self.lancedb.get_count()
         print(f"Count: {count}")
@@ -29,13 +31,13 @@ class RAGService:
             print("Database already indexed. Skipping chunking and embedding.")
 
 
-    def run(self, question: str):
+    def run(self, question: str, enable_thinking: bool):
         vector_query = self.embeddings.embed_query(question)
         result_df = self.lancedb.semantic_search(vector_query=vector_query, n=2)
         context = "\n\n".join(result_df["content"].tolist())
         formatted_prompt = PromptTemplate.build(context=context, question=question)
         print("\nFormatted Prompt:" + "\n" + formatted_prompt)
-        final_response = self.llm.invoke(formatted_prompt)
+        final_response = self.llm.invoke(formatted_prompt, enable_thinking=enable_thinking, return_thinking=enable_thinking)
         print("\nFinal RAG Response:")
         print(final_response)
         return final_response
