@@ -1,5 +1,7 @@
 # simple-rag-example
-A minimal Retrieval Augmented Generation (RAG) API to answer climate-related questions.
+A minimal Retrieval Augmented Generation (RAG) API to answer climate-related questions from [Climate Change 2023 Synthesis Report](https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_LongerReport.pdf) 
+
+
 
 ## Usage
 
