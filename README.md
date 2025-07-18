@@ -1,14 +1,15 @@
 # simple-rag-example
 A minimal Retrieval Augmented Generation (RAG) API to answer climate-related questions from [Climate Change 2023 Synthesis Report](https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_LongerReport.pdf) 
 
+## Prerequisites
+
+Before getting started, ensure you have the following installed:
+
+- **Python 3.11 or above** 
+- **uv** (Python package management, install with `pip install uv` if needed)
 
 
-## Usage
 
-The API exposes a single endpoint for question answering:
-
-**POST** `/v1/api/rag`  
-**Body:**
 
 ### Local setup:
 ```shell
