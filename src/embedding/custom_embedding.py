@@ -42,5 +42,6 @@ class CustomEmbeddings:
         """Get the dimension of the embeddings."""
         return self.model.get_sentence_embedding_dimension()
 
-    def __repr__(self) -> str:
-        return f"SentenceTransformerEmbeddings(model_name='{self.model_name}')"
+
+
+
