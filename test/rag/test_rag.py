@@ -1,6 +1,7 @@
 import pandas as pd
 
 from src.chunker.chunker import Chunker
+from src.config.config import EMBEDDING_MODEL, LLM_MODEL
 from src.embedding.custom_embedding import CustomEmbeddings
 from src.llm.qwen_llm import QwenLLM
 from src.prompt.prompt_template import PromptTemplate
@@ -8,8 +9,6 @@ from src.storage.lancedb import LanceDB
 
 pdf_data = "https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_LongerReport.pdf"
 
-EMBEDDING_MODEL = "BAAI/bge-m3"
-LLM_MODEL = "Qwen/Qwen3-1.7B"
 
 if __name__ == '__main__':
     # initialize the embedding model
@@ -23,7 +22,7 @@ if __name__ == '__main__':
 
     # initialize the Vector DB
     lancedb = LanceDB(table_name="rag_table")
-    # Run document Indexing
+    #Run document Indexing
     print("Start Chunking ....")
     documents = chunker.chunk(pdf_data)
     print("Chunking done....")

@@ -6,7 +6,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 class QwenLLM:
 
-    def __init__(self, model_name: str = "Qwen/Qwen3-1.7B"):
+    def __init__(self, model_name: str):
         self.model_name = model_name
         self.tokenizer = None
         self.model = None
@@ -23,6 +23,7 @@ class QwenLLM:
         )
         self.device = self.model.device
         print(f"Model loaded successfully on device: {self.device}")
+
 
     def _prepare_messages(self, prompt: str) -> List[Dict[str, str]]:
         return [{"role": "user", "content": prompt}]
