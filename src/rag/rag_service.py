@@ -1,6 +1,7 @@
 import pandas as pd
 
 from src.chunker.chunker import Chunker
+from src.config.config import EMBEDDING_MODEL, LLM_MODEL
 from src.embedding.custom_embedding import CustomEmbeddings
 from src.llm.qwen_llm import QwenLLM
 from src.prompt.prompt_template import PromptTemplate
@@ -8,8 +9,6 @@ from src.storage.lancedb import LanceDB
 
 pdf_data = "data/IPCC_AR6_SYR_LongerReport.pdf"
 
-EMBEDDING_MODEL = "BAAI/bge-m3"
-LLM_MODEL = "Qwen/Qwen3-1.7B"
 
 class RAGService:
     def __init__(self):
